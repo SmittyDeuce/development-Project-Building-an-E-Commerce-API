@@ -1,13 +1,10 @@
-from __future__ import annotations
 from password import password
-from flask import Flask, request,jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 from flask_marshmallow import Marshmallow
-from sqlalchemy.orm import DeclarativeBase, relationship, mapped_column, Mapped
-from sqlalchemy import ForeignKey, Table, Column, String, Integer, select
-from marshmallow import ValidationError
-from typing import List, Optional
-import os
+from sqlalchemy.orm import DeclarativeBase
+from extensions import db, ma
+from endpoint.user_endpoints import user_blueprint
+
 
 #initialize the app
 app = Flask(__name__)
@@ -20,7 +17,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 class Base(DeclarativeBase):
     pass
 
-#initialize extension
-db = SQLAlchemy(model_class=Base) # Set up SQLAlchemy using custom Declarative Base
-db.init_app(app) # Link db object to Flask App
-ma = Marshmallow(app) # Initialize MArshmallow for schema serialization
+# Initialize extensions with app
+db.init_app(app)
+ma.init_app(app)
+
+# Register blueprints
+app.register_blueprint(user_blueprint)
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()  # create tables
+    app.run(debug=True)
