@@ -3,7 +3,7 @@ from flask import Flask
 from flask_marshmallow import Marshmallow
 from sqlalchemy.orm import DeclarativeBase
 from extensions import db, ma
-from endpoint.user_endpoints import user_blueprint
+from endpoints.user_endpoints import user_blueprint
 
 
 #initialize the app

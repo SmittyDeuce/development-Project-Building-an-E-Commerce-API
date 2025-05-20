@@ -1,6 +1,7 @@
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import ForeignKey
-from app import Base
+from extensions import Base
+
 
 class OrderProductAssociationTable(Base):
     __tablename__ = "order_product_association"

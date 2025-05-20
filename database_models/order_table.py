@@ -1,7 +1,8 @@
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import ForeignKey, Integer, DateTime, Column
 from datetime import datetime, timezone
-from app import Base
+from extensions import Base
+
 
 class OrderTable(Base):
     __tablename__ = "order_table"
