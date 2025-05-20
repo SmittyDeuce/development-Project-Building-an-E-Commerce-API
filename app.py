@@ -4,6 +4,7 @@ from flask_marshmallow import Marshmallow
 from sqlalchemy.orm import DeclarativeBase
 from extensions import db, ma
 from endpoints.user_endpoints import user_blueprint
+from endpoints.product_endpoints import product_blueprint
 
 
 #initialize the app
@@ -23,6 +24,7 @@ ma.init_app(app)
 
 # Register blueprints
 app.register_blueprint(user_blueprint)
+app.register_blueprint(product_blueprint)
 
 if __name__ == "__main__":
     with app.app_context():
