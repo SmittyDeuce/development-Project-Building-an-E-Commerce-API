@@ -5,7 +5,7 @@ from sqlalchemy.orm import DeclarativeBase
 from extensions import db, ma
 from endpoints.user_endpoints import user_blueprint
 from endpoints.product_endpoints import product_blueprint
-
+from endpoints.order_endpoints import order_blueprint
 
 #initialize the app
 app = Flask(__name__)
@@ -25,7 +25,7 @@ ma.init_app(app)
 # Register blueprints
 app.register_blueprint(user_blueprint)
 app.register_blueprint(product_blueprint)
-
+app.register_blueprint(order_blueprint)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()  # create tables
